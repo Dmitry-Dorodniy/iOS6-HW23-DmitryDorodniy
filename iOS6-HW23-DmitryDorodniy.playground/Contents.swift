@@ -2,7 +2,9 @@
 import Foundation
 
 let sessionConfiguration = URLSessionConfiguration.default
-let session = URLSession.shared
+sessionConfiguration.allowsCellularAccess = true
+sessionConfiguration.waitsForConnectivity = true
+let session = URLSession(configuration: sessionConfiguration)
 
 func getData(urlRequest: String) {
     let urlRequest = URL(string: urlRequest)
@@ -12,13 +14,16 @@ func getData(urlRequest: String) {
         if error != nil {
             print("Error: \(error?.localizedDescription ?? "")")
         } else if let responce = responce as? HTTPURLResponse, responce.statusCode == 200 {
+            print("Response status from server: \(responce.statusCode)\n")
+            
             guard let data = data else { return }
             let dataAsString = String(data: data, encoding: .utf8)
-            print("Response from server: \(responce.statusCode)\n")
             print("Get data: \(dataAsString ?? "nothing")")
         }
     }.resume()
 }
+
+// MARK: - Main
 
 let url = "https://picsum.photos/v2/list"
 let url2 = "https://picsum.photos/id/0/info"
