@@ -1,5 +1,5 @@
 
-import Foundation
+import UIKit
 
 let sessionConfiguration = URLSessionConfiguration.default
 sessionConfiguration.allowsCellularAccess = true
@@ -9,6 +9,10 @@ let session = URLSession(configuration: sessionConfiguration)
 func getData(urlRequest: String) {
     let urlRequest = URL(string: urlRequest)
     guard let url = urlRequest else { return }
+//    if !UIApplication.shared.canOpenURL(url) {
+//        print("URL not correct")
+//        return
+//    }
 
     session.dataTask(with: url) { (data, responce, error) in
         if error != nil {
@@ -19,6 +23,9 @@ func getData(urlRequest: String) {
             guard let data = data else { return }
             let dataAsString = String(data: data, encoding: .utf8)
             print("Get data: \(dataAsString ?? "nothing")")
+        } else if let responce = responce as? HTTPURLResponse {
+            print("Error status from server: \(responce.statusCode)\n")
+            return
         }
     }.resume()
 }
