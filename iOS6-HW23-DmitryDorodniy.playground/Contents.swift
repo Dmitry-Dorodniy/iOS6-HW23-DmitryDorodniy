@@ -2,8 +2,9 @@
 
 let urlPicsum = "https://picsum.photos/v2/list"
 let urlFakeapi = "https://fakerapi.it/api/v1/images?_quantity=1&_type=kittens&_height=300"
+let magicCard = "https://api.magicthegathering.io/v1/cards?name=Lotus"
 
-getData(urlRequest: urlFakeapi)
+getData(urlRequest: magicCard)
 
 // MARK: - Marvel Task
 let marvelPublicKey = "7e1b58c9e3967cddad472e676e668a4e"
@@ -13,5 +14,5 @@ let marvelUrl = getMarvelUrl(marvelPublicKey, md5hash)
 
 getData(urlRequest: marvelUrl)
 
-
+let masterServerURL = "https://gateway.marvel.com:443"
 

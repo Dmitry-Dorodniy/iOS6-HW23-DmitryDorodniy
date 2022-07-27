@@ -5,7 +5,6 @@ let sessionConfiguration: URLSessionConfiguration = {
     configuration.allowsCellularAccess = true
     configuration.waitsForConnectivity = true
     configuration.timeoutIntervalForRequest = 20
-    configuration.timeoutIntervalForResource = 20
 return configuration
 }()
 
@@ -14,12 +13,7 @@ let session = URLSession(configuration: sessionConfiguration)
 public func getData(urlRequest: String) {
     let urlRequest = URL(string: urlRequest)
     guard let url = urlRequest else { return }
-
-//    if !UIApplication.shared.canOpenURL(url) {
-//        print("URL not correct")
-//        return
-//    }
-
+    
     session.dataTask(with: url) { data, responce, error in
         if error != nil {
             print("Error: \(error?.localizedDescription ?? "")")
