@@ -14,5 +14,3 @@ let marvelUrl = getMarvelUrl(marvelPublicKey, md5hash)
 
 getData(urlRequest: marvelUrl)
 
-let masterServerURL = "https://gateway.marvel.com:443"
-

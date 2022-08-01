@@ -18,15 +18,16 @@ public func getData(urlRequest: String) {
         if error != nil {
             print("Error: \(error?.localizedDescription ?? "")")
         } else if let responce = responce as? HTTPURLResponse, responce.statusCode == 200 {
-            print("Response status from server: \(responce.statusCode)\n")
+            print("Success status from server: \(HTTPURLResponse.localizedString(forStatusCode: responce.statusCode))\n")
             guard let data = data else { return }
             let dataAsString = String(data: data, encoding: .utf8)
             print("Get data: \n\(dataAsString ?? "nothing")\n")
 
         } else if let responce = responce as? HTTPURLResponse {
-            print("Error status from server: \(responce.statusCode)\n")
+            print("Error status from server: \(HTTPURLResponse.localizedString(forStatusCode: responce.statusCode))\n")
             return
         }
     }.resume()
 }
+
 
